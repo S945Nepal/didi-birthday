@@ -125,21 +125,6 @@
     from{opacity:0; transform:translateY(22px);}
     to{opacity:1; transform:translateY(0);}
   }
-  .scroll-cue{
-    position:absolute; right:6vw; bottom:6vw; z-index:2;
-    color:var(--paper); opacity:0.7;
-    display:flex; flex-direction:column; align-items:center; gap:10px;
-    font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
-    animation:riseIn 1s ease forwards; animation-delay:1.8s; opacity:0;
-  }
-  .scroll-cue .stem{width:1px; height:46px; background:rgba(251,248,239,0.5); position:relative; overflow:hidden;}
-  .scroll-cue .stem::after{
-    content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
-    background:var(--marigold);
-    animation:stemFlow 2.2s ease-in-out infinite;
-  }
-  @keyframes stemFlow{ 0%{top:-100%;} 60%{top:100%;} 100%{top:100%;} }
-
   /* ---------- age band ---------- */
   .age-band{
     background:var(--leaf-deep);
@@ -412,7 +397,6 @@
     <h1 class="hero-title">Happy Birthday,<br><em>Manisha didi</em></h1>
     <p class="hero-sub">Every year the flowers come back a little brighter, and so do you. Here's to Manisha Pokharel — today, and every ordinary day that isn't today.</p>
   </div>
-  <div class="scroll-cue"><span>Scroll</span><span class="stem"></span></div>
 </section>
 
 <!-- AGE BAND -->
