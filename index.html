@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Manisha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Cormorant+Garamond:ital@0;1&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f1e4;
+    --ink:#2b2416;
+    --petal-pink:#c94f6d;
+    --petal-red:#b5382f;
+    --marigold:#e0a52c;
+    --violet:#6b4d8f;
+    --leaf:#4c5a3a;
+    --leaf-deep:#2f3a22;
+    --paper:#fbf8ef;
+    --line: rgba(43,36,22,0.16);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+
+  /* ---------- texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:50;
+    opacity:0.035; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:40;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 6vw;
+    mix-blend-mode:difference;
+    color:#fff;
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+  }
+  nav .brand{font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:16px; letter-spacing:0.02em;}
+  nav .links{display:flex; gap:28px;}
+  nav .links a{text-decoration:none; opacity:0.85; transition:opacity .25s;}
+  nav .links a:hover{opacity:1;}
+  @media(max-width:640px){ nav .links{gap:16px; font-size:11px;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+  .hero-photo{
+    position:absolute; inset:0;
+    background-image:url('images/photo1.jpg');
+    background-size:cover;
+    background-position:center 20%;
+    filter:saturate(1.05) contrast(1.02);
+    transform:scale(1.08);
+    animation:heroSettle 2.4s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  @keyframes heroSettle{ to{ transform:scale(1); } }
+  .hero-veil{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(43,36,22,0.32) 0%, rgba(43,36,22,0.05) 30%, rgba(43,36,22,0.05) 55%, rgba(20,16,9,0.78) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    width:100%;
+    padding:0 6vw 7vw;
+    color:var(--paper);
+  }
+  .hero-eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-size:clamp(15px,1.8vw,20px);
+    letter-spacing:0.02em;
+    opacity:0;
+    animation:riseIn .9s ease forwards;
+    animation-delay:0.9s;
+    margin-bottom:6px;
+  }
+  .hero-title{
+    font-size:clamp(52px, 10vw, 128px);
+    line-height:0.92;
+    margin:0 0 10px;
+    opacity:0;
+    animation:riseIn 1.1s cubic-bezier(.16,.9,.3,1) forwards;
+    animation-delay:1.1s;
+  }
+  .hero-title em{font-style:italic; color:var(--marigold);}
+  .hero-sub{
+    max-width:520px;
+    font-size:clamp(14px,1.6vw,17px);
+    line-height:1.7;
+    font-weight:300;
+    color:rgba(251,248,239,0.86);
+    opacity:0;
+    animation:riseIn 1s ease forwards;
+    animation-delay:1.4s;
+  }
+  @keyframes riseIn{
+    from{opacity:0; transform:translateY(22px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .scroll-cue{
+    position:absolute; right:6vw; bottom:6vw; z-index:2;
+    color:var(--paper); opacity:0.7;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    animation:riseIn 1s ease forwards; animation-delay:1.8s; opacity:0;
+  }
+  .scroll-cue .stem{width:1px; height:46px; background:rgba(251,248,239,0.5); position:relative; overflow:hidden;}
+  .scroll-cue .stem::after{
+    content:''; position:absolute; top:-100%; left:0; width:100%; height:100%;
+    background:var(--marigold);
+    animation:stemFlow 2.2s ease-in-out infinite;
+  }
+  @keyframes stemFlow{ 0%{top:-100%;} 60%{top:100%;} 100%{top:100%;} }
+
+  /* ---------- age band ---------- */
+  .age-band{
+    background:var(--leaf-deep);
+    color:var(--cream);
+    padding:64px 6vw;
+    display:flex; flex-wrap:wrap; gap:40px;
+    justify-content:space-between; align-items:center;
+    border-bottom:1px solid rgba(246,241,228,0.12);
+  }
+  .age-number{
+    font-family:'Fraunces', serif;
+    font-size:clamp(90px,16vw,220px);
+    line-height:0.8;
+    color:var(--cream);
+    position:relative;
+    display:flex; align-items:baseline; gap:14px;
+  }
+  .age-number small{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    font-size:clamp(16px,2vw,22px);
+    color:var(--marigold);
+    letter-spacing:0.02em;
+  }
+  .age-caption{
+    max-width:380px;
+    font-size:15px;
+    line-height:1.8;
+    color:rgba(246,241,228,0.75);
+  }
+  .age-caption strong{color:var(--marigold); font-weight:400; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.15em;}
+
+  /* ---------- section shell ---------- */
+  section{
+    position:relative;
+    padding:120px 6vw;
+  }
+  .kicker{
+    display:flex; align-items:center; gap:14px;
+    font-size:12px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--petal-red);
+    margin-bottom:22px;
+  }
+  .kicker::before{
+    content:''; width:34px; height:1px; background:var(--petal-red);
+  }
+  .section-head{
+    max-width:640px;
+    font-size:clamp(30px,4vw,50px);
+    line-height:1.08;
+    margin:0 0 18px;
+  }
+  .section-head em{font-style:italic; color:var(--violet);}
+  .section-lede{
+    max-width:520px;
+    font-size:16px;
+    line-height:1.8;
+    color:rgba(43,36,22,0.72);
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+  }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .9s ease, transform .9s cubic-bezier(.16,.9,.3,1); }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- garland divider ---------- */
+  .garland{
+    height:90px;
+    display:flex; align-items:center; justify-content:center;
+    gap:0;
+    overflow:hidden;
+  }
+  .garland svg{ width:100%; max-width:1100px; height:60px; }
+
+  /* ---------- photo + letter section ---------- */
+  .duet{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+  }
+  @media(max-width:860px){ .duet{grid-template-columns:1fr; gap:40px;} }
+  .duet-photo{
+    position:relative;
+    border-radius:4px 4px 4px 90px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(43,36,22,0.35);
+  }
+  .duet-photo img{
+    width:100%; display:block;
+    filter:saturate(1.05);
+  }
+  .duet-frame-tag{
+    position:absolute; bottom:16px; left:16px;
+    background:rgba(251,248,239,0.92);
+    color:var(--ink);
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:14px;
+    padding:8px 16px;
+    border-radius:2px;
+  }
+  .letter{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:52px 46px;
+    position:relative;
+  }
+  .letter::before{
+    content:'”';
+    position:absolute; top:-6px; left:24px;
+    font-family:'Fraunces', serif;
+    font-size:120px;
+    color:var(--marigold);
+    opacity:0.35;
+    line-height:1;
+  }
+  .letter p{
+    font-family:'Cormorant Garamond', serif;
+    font-size:clamp(19px,2vw,23px);
+    line-height:1.75;
+    color:var(--ink);
+    margin:0 0 18px;
+    position:relative;
+  }
+  .letter .sign{
+    margin-top:28px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--petal-red);
+  }
+
+  /* ---------- wish garden (interactive) ---------- */
+  .garden{
+    background:var(--leaf);
+    color:var(--cream);
+    border-radius:2px;
+    padding:70px 6vw;
+    margin:120px 6vw;
+    position:relative;
+    overflow:hidden;
+  }
+  .garden::after{
+    content:'';
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 85% 20%, rgba(224,165,44,0.18), transparent 45%),
+               radial-gradient(circle at 10% 90%, rgba(201,79,109,0.16), transparent 40%);
+    pointer-events:none;
+  }
+  .garden-head{
+    position:relative; z-index:1;
+    max-width:560px; margin-bottom:44px;
+  }
+  .garden-head .kicker{ color:var(--marigold); }
+  .garden-head .kicker::before{ background:var(--marigold); }
+  .garden-head h2{ color:var(--cream); font-size:clamp(28px,3.6vw,44px); }
+  .garden-head p{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:16px;
+    color:rgba(246,241,228,0.75); line-height:1.7; margin-top:14px;
+  }
+  .wish-grid{
+    position:relative; z-index:1;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(150px,1fr));
+    gap:18px;
+  }
+  .bud{
+    aspect-ratio:1;
+    background:rgba(246,241,228,0.06);
+    border:1px solid rgba(246,241,228,0.22);
+    border-radius:50% 50% 8px 8px / 60% 60% 8px 8px;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:transform .35s cubic-bezier(.2,.8,.3,1), background .4s, border-color .4s;
+    position:relative;
+  }
+  .bud:hover{ transform:translateY(-4px); border-color:rgba(246,241,228,0.5); }
+  .bud .mark{
+    font-size:30px;
+    transition:transform .5s cubic-bezier(.3,1.6,.4,1), opacity .4s;
+    opacity:0.55;
+  }
+  .bud.bloomed{
+    background:rgba(224,165,44,0.14);
+    border-color:var(--marigold);
+  }
+  .bud.bloomed .mark{ transform:scale(1.3) rotate(8deg); opacity:1; }
+  .bud .wish-text{
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; padding:10px;
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:13px; line-height:1.4;
+    color:var(--cream);
+    opacity:0; pointer-events:none;
+    transition:opacity .4s ease;
+  }
+  .bud.bloomed .wish-text{ opacity:1; }
+  .bud.bloomed .mark{ opacity:0; position:absolute; }
+  .garden-note{
+    position:relative; z-index:1;
+    margin-top:30px;
+    font-size:12px; letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(246,241,228,0.5);
+  }
+
+  /* ---------- gallery arch ---------- */
+  .arch-wrap{
+    display:flex; justify-content:center;
+  }
+  .arch{
+    position:relative;
+    width:min(100%, 620px);
+    border-radius:280px 280px 6px 6px;
+    overflow:hidden;
+    box-shadow:0 40px 80px -30px rgba(43,36,22,0.4);
+  }
+  .arch img{ width:100%; display:block; }
+  .arch-caption{
+    text-align:center;
+    margin-top:26px;
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:17px;
+    color:rgba(43,36,22,0.7);
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--cream);
+    padding:80px 6vw 40px;
+    text-align:center;
+  }
+  footer .fw{ font-family:'Fraunces', serif; font-size:clamp(30px,5vw,56px); font-style:italic; margin:0 0 14px; }
+  footer .fs{
+    font-family:'Cormorant Garamond', serif; font-style:italic;
+    color:rgba(246,241,228,0.6); font-size:16px; margin-bottom:50px;
+  }
+  .foot-bottom{
+    border-top:1px solid rgba(246,241,228,0.14);
+    padding-top:24px;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:rgba(246,241,228,0.4);
+  }
+
+  /* petal fall canvas */
+  #petals{ position:fixed; inset:0; pointer-events:none; z-index:30; }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+<canvas id="petals"></canvas>
+
+<nav>
+  <div class="brand">Manisha</div>
+  <div class="links">
+    <a href="#letter">Letter</a>
+    <a href="#garden">Wishes</a>
+    <a href="#gallery">Gallery</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-photo"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">25 Bhadra · a day for one sister in particular</div>
+    <h1 class="hero-title">Happy Birthday,<br><em>Manisha</em></h1>
+    <p class="hero-sub">Every year the flowers come back a little brighter, and so do you. Here's to Manisha Pokharel — today, and every ordinary day that isn't today.</p>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="stem"></span></div>
+</section>
+
+<!-- AGE BAND -->
+<div class="age-band">
+  <div class="age-number">24<small>years, blooming</small></div>
+  <div class="age-caption">Born <strong>25th Baishakh, 2059</strong> — a spring child, which perhaps explains why every photo of you seems to happen somewhere green, somewhere growing.</div>
+</div>
+
+<!-- LETTER -->
+<section id="letter">
+  <div class="kicker reveal">A note, kept for today</div>
+  <h2 class="section-head reveal">Some things I've been meaning<br>to <em>say out loud.</em></h2>
+
+  <div style="height:56px"></div>
+
+  <div class="duet">
+    <div class="duet-photo reveal">
+      <img src="photo1.jpg" alt="Manisha on the bench by the river, surrounded by hanging flower baskets">
+      <div class="duet-frame-tag">Bourton-on-the-Water</div>
+    </div>
+    <div class="letter reveal">
+      <p>Dear Manisha,</p>
+      <p>Twenty-four looks good on you. It always has — this way you have of sitting in the middle of somewhere beautiful, flowers spilling over a lamppost above your head, and still being the brightest thing in the frame.</p>
+      <p>I hope this year brings you the ordinary magic you deserve: the good tea, the long conversations, the kind of laughter that makes strangers turn around and smile too. Keep wandering, keep blooming, keep being exactly this much yourself.</p>
+      <p class="sign">— with all my love, always</p>
+    </div>
+  </div>
+</section>
+
+<!-- WISH GARDEN -->
+<section id="garden" style="padding:0;">
+  <div class="garden">
+    <div class="garden-head reveal">
+      <div class="kicker">Tend the garden</div>
+      <h2>Tap a bud. Let it bloom.</h2>
+      <p>Each one is holding a small wish for your year ahead — go on, open them all.</p>
+    </div>
+    <div class="wish-grid" id="wishGrid"></div>
+    <div class="garden-note">24 wishes, one for every year</div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="kicker reveal">Kept, fondly</div>
+  <h2 class="section-head reveal">A moment worth <em>framing.</em></h2>
+  <div style="height:50px"></div>
+  <div class="arch-wrap reveal">
+    <div class="arch">
+      <img src="photo2.jpg" alt="Manisha smiling">
+    </div>
+  </div>
+  <p class="arch-caption reveal">Just as you are — no caption needed.</p>
+</section>
+
+<footer>
+  <div class="fw">Here's to you, Manisha.</div>
+  <div class="fs">Happy 24th Birthday — 25th Baishakh</div>
+  <div class="foot-bottom">Made with love, for Manisha Pokharel</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+  // Wish garden
+  const wishes = [
+    "Endless good tea","Sunlit mornings","Laughter with old friends",
+    "New places to wander","Courage for big leaps","Softness on hard days",
+    "Flowers, always nearby","A year of 'yes'","Rest, unhurried",
+    "Love that finds you","Photos worth keeping","Bold plans, kept",
+    "Good books, slow reading","Warm hands, warm heart","Music that moves you",
+    "Someone who really listens","A view like this one","Small joyful surprises",
+    "Confidence in your voice","Deep, easy sleep","A little more wonder",
+    "Home, wherever you are","Health that holds strong","Everything you're hoping for"
+  ];
+  const marks = ['✿','❀','✾','❁','✽'];
+  const grid = document.getElementById('wishGrid');
+  wishes.forEach((w,i)=>{
+    const bud = document.createElement('div');
+    bud.className = 'bud';
+    bud.innerHTML = `<span class="mark">${marks[i % marks.length]}</span><span class="wish-text">${w}</span>`;
+    bud.addEventListener('click', ()=> bud.classList.toggle('bloomed'));
+    grid.appendChild(bud);
+  });
+
+  // Falling petals
+  const canvas = document.getElementById('petals');
+  const ctx = canvas.getContext('2d');
+  let W, H, petals = [];
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const petalColors = ['#c94f6d','#e0a52c','#b5382f','#6b4d8f'];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function spawn(){
+    if(petals.length > 26) return;
+    petals.push({
+      x: Math.random()*W,
+      y: -20,
+      r: 5 + Math.random()*6,
+      speed: 0.4 + Math.random()*0.7,
+      drift: Math.random()*1.2 - 0.6,
+      angle: Math.random()*Math.PI*2,
+      spin: (Math.random()-0.5)*0.03,
+      color: petalColors[Math.floor(Math.random()*petalColors.length)],
+      opacity: 0.4 + Math.random()*0.4
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    if(!reduceMotion){
+      petals.forEach(p=>{
+        p.y += p.speed;
+        p.x += p.drift;
+        p.angle += p.spin;
+      });
+      petals = petals.filter(p=>p.y < H+20);
+      if(Math.random() < 0.045) spawn();
+    }
+    petals.forEach(p=>{
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.angle);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      ctx.beginPath();
+      ctx.ellipse(0,0,p.r,p.r*0.6,0,0,Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  if(!reduceMotion) draw(); else { draw(); }
+</script>
+
+</body>
+</html>
